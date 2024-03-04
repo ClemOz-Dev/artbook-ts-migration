@@ -1,0 +1,25 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=artbook
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=artbook
+      - MONGO_INITDB_ROOT_USERNAME=artbook
+      - MONGO_INITDB_ROOT_PASSWORD=artbook
+    volumes:
+      - ./config/initMongo.js:/docker-entrypoint-initdb.d/initMongo.js
+
